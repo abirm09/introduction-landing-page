@@ -1,8 +1,8 @@
 const DashboardHomePage = async () => {
   return (
-    <div>
-      <h2 className="text-center font-bold">Welcome</h2>
-    </div>
+    <>
+      <h2 className="font-bold text-center">Welcome to out site</h2>
+    </>
   );
 };
 

@@ -1,21 +1,35 @@
 import { SidebarProvider, SidebarTrigger } from "@/components/ui";
+import config from "@/config";
+import { LoginForm } from "@/features/auth";
 import BreadcrumbDashboard from "@/features/dashboard/BreadcrumbDashboard";
 import DashboardSidebar from "@/features/dashboard/DashboardSidebar";
+import { cookies } from "next/headers";
 import React from "react";
 
-const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
+const DashboardLayout = async ({ children }: { children: React.ReactNode }) => {
+  const cookieStore = await cookies();
+  const isTokenAvailable = !!cookieStore.get(config.token_cookie_name)?.value;
+
   return (
     <>
-      <SidebarProvider>
-        <DashboardSidebar />
-        <main className="w-full">
-          <div className="flex gap-5 items-center p-3">
-            <SidebarTrigger />
-            <BreadcrumbDashboard />
-          </div>
-          {children}
-        </main>
-      </SidebarProvider>
+      {isTokenAvailable ? (
+        <>
+          <SidebarProvider>
+            <DashboardSidebar />
+            <main className="w-full">
+              <div className="flex gap-5 items-center p-3">
+                <SidebarTrigger />
+                <BreadcrumbDashboard />
+              </div>
+              {children}
+            </main>
+          </SidebarProvider>
+        </>
+      ) : (
+        <>
+          <LoginForm />
+        </>
+      )}
     </>
   );
 };

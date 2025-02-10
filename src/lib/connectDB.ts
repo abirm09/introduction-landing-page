@@ -1,3 +1,4 @@
+import config from "@/config";
 import mongoose from "mongoose";
 
 declare global {
@@ -12,7 +13,7 @@ if (!cached) {
 }
 
 async function connectDB() {
-  const MONGODB_URI = process.env.MONGODB_URI!;
+  const MONGODB_URI = config?.mongodb_uri;
 
   if (!MONGODB_URI) {
     throw new Error(
