@@ -1,3 +1,4 @@
+export * from "./general/general";
 export * from "./loggedInSession/loggedInSessions";
 export * from "./passwordResetReq/passwordResetReq";
 export * from "./projects/project";
