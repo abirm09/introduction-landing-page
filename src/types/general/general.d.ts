@@ -49,6 +49,7 @@ type TGeneral = {
     description?: string;
   };
   seoData: {
+    title?: string;
     description?: string;
     keywords?: string[];
     openGraph: {

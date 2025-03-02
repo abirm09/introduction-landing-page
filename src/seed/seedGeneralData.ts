@@ -55,6 +55,7 @@ const SeedGeneral = async () => {
       description: "This is the portfolio of John Doe.",
     },
     seoData: {
+      title: "MD Abir Mahmud",
       description:
         "John Doe's personal portfolio showcasing his projects and skills.",
       keywords: [

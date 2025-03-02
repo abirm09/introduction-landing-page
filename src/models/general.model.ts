@@ -53,6 +53,7 @@ const GeneralSchema = new Schema<TGeneral>(
       description: { type: String },
     },
     seoData: {
+      title: { type: String },
       description: { type: String },
       keywords: [{ type: String }],
       openGraph: {

@@ -8,7 +8,8 @@ const config = {
   },
   password_reset_token_secret: process.env.PASSWORD_RESET_TOKEN_SECRET || "",
   bcrypt_salt: Number(process.env.BCRYPT_SALT) || 10,
-  next_public_site_url: process.env.NEXT_PUBLIC_SITE_URL || "http://localhost",
+  next_public_site_url:
+    process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
 };
 
 export default config;
