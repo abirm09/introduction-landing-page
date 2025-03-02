@@ -10,6 +10,8 @@ const config = {
   bcrypt_salt: Number(process.env.BCRYPT_SALT) || 10,
   next_public_site_url:
     process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
+  admin_email: process.env.ADMIN_EMAIL || "",
+  admin_password: process.env.ADMIN_PASSWORD || "",
 };
 
 export default config;

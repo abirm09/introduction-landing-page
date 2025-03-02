@@ -1,6 +1,7 @@
 import { Toaster } from "@/components/ui";
 import GetGeneraData from "@/lib/getGeneraData";
 import { ThemeProvider } from "@/providers";
+import SeedAdmin from "@/seed/seedAdmin";
 import SeedGeneral from "@/seed/seedGeneralData";
 import "@/styles/globals.css";
 import type { Metadata } from "next";
@@ -30,6 +31,7 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  await SeedAdmin();
   await SeedGeneral();
 
   const general = await GetGeneraData();
