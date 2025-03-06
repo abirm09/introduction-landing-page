@@ -1,7 +1,7 @@
 import config from "@/config";
 import { connectDB } from "@/lib";
 import { User } from "@/models";
-import bcrypt from "bcryptjs";
+import { hash } from "bcryptjs";
 
 const SeedAdmin = async () => {
   try {
@@ -11,7 +11,7 @@ const SeedAdmin = async () => {
     const data = {
       name: "Admin",
       email: config.admin_email,
-      password: await bcrypt.hash(config.admin_password, config.bcrypt_salt),
+      password: await hash(config.admin_password, config.bcrypt_salt),
     };
 
     await User.create(data);

@@ -1,8 +1,8 @@
 import config from "@/config";
 import { connectDB } from "@/lib";
 import { User } from "@/models/user.model";
-import bcrypt from "bcryptjs";
-import jwt from "jsonwebtoken";
+import { hash } from "bcryptjs";
+import { verify } from "jsonwebtoken";
 
 import mongoose from "mongoose";
 import { NextResponse } from "next/server";
@@ -43,11 +43,11 @@ export const POST = async (req: Request) => {
       return NextResponse.redirect(redirectUrl);
     }
 
-    const payload = jwt.verify(token, config.token_secret);
+    const payload = verify(token, config.token_secret);
 
     const userId = (payload as { userId: string })?.userId;
 
-    const newPasswordHash = await bcrypt.hash(password, config.bcrypt_salt);
+    const newPasswordHash = await hash(password, config.bcrypt_salt);
 
     await User.updateOne(
       { _id: userId },

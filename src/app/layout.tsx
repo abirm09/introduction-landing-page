@@ -6,7 +6,7 @@ import SeedGeneral from "@/seed/seedGeneralData";
 import "@/styles/globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import React from "react";
+import { ReactNode } from "react";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -29,7 +29,7 @@ export const generateViewport = () => ({
 export default async function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: ReactNode;
 }>) {
   await SeedAdmin();
   await SeedGeneral();

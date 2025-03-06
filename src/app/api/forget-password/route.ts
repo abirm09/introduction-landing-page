@@ -2,13 +2,13 @@ import config from "@/config";
 import { connectDB, sendMailWithNodeMailer } from "@/lib";
 import { PasswordResetRequest } from "@/models/passwordResetReq.model";
 import { User } from "@/models/user.model";
-import jwt from "jsonwebtoken";
-import mongoose, { Types } from "mongoose";
+import { sign } from "jsonwebtoken";
+import { Types, startSession } from "mongoose";
 import { NextResponse } from "next/server";
 
 export const POST = async (req: Request) => {
   await connectDB();
-  const session = await mongoose.startSession();
+  const session = await startSession();
   const baseUrl = req.headers.get("origin") || "http://localhost:3000";
   try {
     session.startTransaction();
@@ -25,7 +25,7 @@ export const POST = async (req: Request) => {
 
     const tokenId = new Types.ObjectId();
 
-    const token = jwt.sign(
+    const token = sign(
       { tokenId, userId: user?._id },
       config.password_reset_token_secret,
       {

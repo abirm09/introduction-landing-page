@@ -2,8 +2,8 @@ import config from "@/config";
 import connectDB from "@/lib/connectDB";
 import { LoggedInSession } from "@/models/loggedInSession.model";
 import { User } from "@/models/user.model";
-import bcrypt from "bcryptjs";
-import jwt from "jsonwebtoken";
+import { compare } from "bcryptjs";
+import { sign } from "jsonwebtoken";
 import { Types } from "mongoose";
 import { NextResponse } from "next/server";
 
@@ -29,7 +29,7 @@ export const POST = async (req: Request) => {
     );
   }
 
-  const isPasswordMatched = await bcrypt.compare(password, user.password);
+  const isPasswordMatched = await compare(password, user.password);
 
   if (!isPasswordMatched) {
     return NextResponse.redirect(
@@ -41,7 +41,7 @@ export const POST = async (req: Request) => {
 
   await LoggedInSession.create({ tokenId });
 
-  const token = jwt.sign({ tokenId }, config.token_secret, { expiresIn: "1d" });
+  const token = sign({ tokenId }, config.token_secret, { expiresIn: "1d" });
 
   const redirectUrl = new URL("/dashboard", baseUrl);
 

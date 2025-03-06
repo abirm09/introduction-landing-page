@@ -1,1 +1,5 @@
 @import url(./tailwind.css);
+
+.container-max {
+    @apply max-w-7xl mx-auto px-2
+}

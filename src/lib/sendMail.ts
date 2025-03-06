@@ -1,7 +1,7 @@
 import config from "@/config";
-import nodemailer from "nodemailer";
+import { createTransport } from "nodemailer";
 
-const transporter = nodemailer.createTransport({
+const transporter = createTransport({
   service: "gmail",
   auth: {
     user: config.google_smtp.id,

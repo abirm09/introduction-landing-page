@@ -4,9 +4,9 @@ import { LoginForm } from "@/features/auth";
 import BreadcrumbDashboard from "@/features/dashboard/BreadcrumbDashboard";
 import DashboardSidebar from "@/features/dashboard/DashboardSidebar";
 import { cookies } from "next/headers";
-import React from "react";
+import { ReactNode } from "react";
 
-const DashboardLayout = async ({ children }: { children: React.ReactNode }) => {
+const DashboardLayout = async ({ children }: { children: ReactNode }) => {
   const cookieStore = await cookies();
   const isTokenAvailable = !!cookieStore.get(config.token_cookie_name)?.value;
 

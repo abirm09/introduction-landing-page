@@ -2,7 +2,7 @@ import { Button, Input } from "@/components/ui";
 import config from "@/config";
 import { Error } from "@/features/auth";
 import { TSearchParams } from "@/types";
-import jwt from "jsonwebtoken";
+import { verify } from "jsonwebtoken";
 import { redirect } from "next/navigation";
 
 const ResetPassword = async ({
@@ -14,7 +14,7 @@ const ResetPassword = async ({
   token = (Array.isArray(token) ? token[0] : token) || "";
 
   try {
-    jwt.verify(token, config.password_reset_token_secret);
+    verify(token, config.password_reset_token_secret);
     // eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
   } catch (error) {
     return redirect("/");
